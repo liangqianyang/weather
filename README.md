@@ -9,7 +9,7 @@
 ## 安装
 
 ```sh
-$ composer require overtrue/weather -vvv
+$ composer require amap/weather -vvv
 ```
 
 ## 配置
@@ -20,7 +20,7 @@ $ composer require overtrue/weather -vvv
 ## 使用
 
 ```php
-use Overtrue\Weather\Weather;
+use Amap\Weather\Weather;
 
 $key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
