@@ -6,7 +6,7 @@
  * Time: 16:43
  */
 
-namespace Overtrue\Weather\Exceptions;
+namespace Amap\Weather\Exceptions;
 
 
 class HttpException extends Exception

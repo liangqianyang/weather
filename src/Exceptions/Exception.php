@@ -6,7 +6,7 @@
  * Time: 16:42
  */
 
-namespace Overtrue\Weather\Exceptions;
+namespace Amap\Weather\Exceptions;
 
 
 class Exception extends \Exception

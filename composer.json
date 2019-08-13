@@ -1,5 +1,5 @@
 {
-    "name": "overtrue\/weather",
+    "name": "amap\/weather",
     "description": "A weather SDK",
     "license": "MIT",
     "authors": [
@@ -15,13 +15,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Overtrue\\Weather\\": "src"
+            "Amap\\Weather\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Overtrue\\Weather\\ServiceProvider"
+                "Amap\\Weather\\ServiceProvider"
             ]
         }
     }

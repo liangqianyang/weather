@@ -1,10 +1,10 @@
 <?php
 
-namespace Overtrue\Weather;
+namespace Amap\Weather;
 
 use GuzzleHttp\Client;
-use Overtrue\Weather\Exceptions\HttpException;
-use Overtrue\Weather\Exceptions\InvalidArgumentException;
+use Amap\Weather\Exceptions\HttpException;
+use Amap\Weather\Exceptions\InvalidArgumentException;
 
 class Weather
 {

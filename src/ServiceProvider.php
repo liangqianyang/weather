@@ -6,7 +6,7 @@
  * Time: 9:26
  */
 
-namespace Overtrue\Weather;
+namespace Amap\Weather;
 
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider

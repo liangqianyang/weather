@@ -6,15 +6,15 @@
  * Time: 16:51
  */
 
-namespace Overtrue\Weather\Tests;
+namespace Amap\Weather\Tests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Response;
 use Mockery\Matcher\AnyArgs;
-use Overtrue\Weather\Exceptions\HttpException;
-use Overtrue\Weather\Exceptions\InvalidArgumentException;
-use Overtrue\Weather\Weather;
+use Amap\Weather\Exceptions\HttpException;
+use Amap\Weather\Exceptions\InvalidArgumentException;
+use Amap\Weather\Weather;
 use PHPUnit\Framework\TestCase;
 
 class WeatherTest extends TestCase
