@@ -29,7 +29,7 @@ class WeatherTest extends TestCase
         $w = new Weather('mock-key');
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Invalid type value(base/all): foo');
+        $this->expectExceptionMessage('Invalid type value(live/forecast): foo');
 
         $w->getWeather('深圳', 'foo');
 
@@ -48,49 +48,9 @@ class WeatherTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid response format: array');
 
-        $w->getWeather('深圳', 'base', 'array');
+        $w->getWeather('深圳', 'live', 'array');
 
         $this->fail('Failed to assert getWeather throw exception with invalid argument.');
-    }
-
-    /**
-     * 测试封装的功能
-     */
-    public function testGetWeather()
-    {
-        // json
-        $response = new Response(200, [], '{"success": true}');
-        $client = \Mockery::mock(Client::class);
-        $client->allows()->get('https://restapi.amap.com/v3/weather/weatherInfo', [
-            'query' => [
-                'key' => 'mock-key',
-                'city' => '深圳',
-                'output' => 'json',
-                'extensions' => 'base',
-            ],
-        ])->andReturn($response);
-
-        $w = \Mockery::mock(Weather::class, ['mock-key'])->makePartial();
-        $w->allows()->getHttpClient()->andReturn($client);
-
-        $this->assertSame(['success' => true], $w->getWeather('深圳'));
-
-        // xml
-        $response = new Response(200, [], '<hello>content</hello>');
-        $client = \Mockery::mock(Client::class);
-        $client->allows()->get('https://restapi.amap.com/v3/weather/weatherInfo', [
-            'query' => [
-                'key' => 'mock-key',
-                'city' => '深圳',
-                'extensions' => 'all',
-                'output' => 'xml',
-            ],
-        ])->andReturn($response);
-
-        $w = \Mockery::mock(Weather::class, ['mock-key'])->makePartial();
-        $w->allows()->getHttpClient()->andReturn($client);
-
-        $this->assertSame('<hello>content</hello>', $w->getWeather('深圳', 'all', 'xml'));
     }
 
     /**
@@ -138,5 +98,31 @@ class WeatherTest extends TestCase
 
         // 设置参数后，timeout 为 5000
         $this->assertSame(5000, $w->getHttpClient()->getConfig('timeout'));
+    }
+
+    /**
+     * 测试获取实时天气
+     */
+    public function testGetLiveWeather()
+    {
+        // 将 getWeather 接口模拟为返回固定内容，以测试参数传递是否正确
+        $w = \Mockery::mock(Weather::class, ['mock-key'])->makePartial();
+        $w->expects()->getWeather('深圳', 'base', 'json')->andReturn(['success' => true]);
+
+        // 断言正确传参并返回
+        $this->assertSame(['success' => true], $w->getLiveWeather('深圳'));
+    }
+
+    /**
+     * 测试获取天气预报
+     */
+    public function testGetForecastsWeather()
+    {
+        // 将 getWeather 接口模拟为返回固定内容，以测试参数传递是否正确
+        $w = \Mockery::mock(Weather::class, ['mock-key'])->makePartial();
+        $w->expects()->getWeather('深圳', 'all', 'json')->andReturn(['success' => true]);
+
+        // 断言正确传参并返回
+        $this->assertSame(['success' => true], $w->getForecastsWeather('深圳'));
     }
 }
