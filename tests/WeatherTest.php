@@ -1,16 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bb
- * Date: 2019/8/12
- * Time: 16:51
+
+/*
+ * This file is part of the amap/weather.
+ *
+ * (c) overtrue <i@overtrue.me>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Amap\Weather\Tests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Psr7\Response;
 use Mockery\Matcher\AnyArgs;
 use Amap\Weather\Exceptions\HttpException;
 use Amap\Weather\Exceptions\InvalidArgumentException;
@@ -20,7 +22,8 @@ use PHPUnit\Framework\TestCase;
 class WeatherTest extends TestCase
 {
     /**
-     * 测试错误的参数
+     * 测试错误的参数.
+     *
      * @throws HttpException
      * @throws InvalidArgumentException
      */
@@ -37,7 +40,8 @@ class WeatherTest extends TestCase
     }
 
     /**
-     * 测试错误的返回格式
+     * 测试错误的返回格式.
+     *
      * @throws HttpException
      * @throws InvalidArgumentException
      */
@@ -54,7 +58,7 @@ class WeatherTest extends TestCase
     }
 
     /**
-     * 测试请求异常
+     * 测试请求异常.
      */
     public function testGetWeatherWithGuzzleRuntimeException()
     {
@@ -84,7 +88,7 @@ class WeatherTest extends TestCase
     }
 
     /**
-     * 测试设置请求参数
+     * 测试设置请求参数.
      */
     public function testSetGuzzleOptions()
     {
@@ -101,7 +105,7 @@ class WeatherTest extends TestCase
     }
 
     /**
-     * 测试获取实时天气
+     * 测试获取实时天气.
      */
     public function testGetLiveWeather()
     {
@@ -114,7 +118,7 @@ class WeatherTest extends TestCase
     }
 
     /**
-     * 测试获取天气预报
+     * 测试获取天气预报.
      */
     public function testGetForecastsWeather()
     {

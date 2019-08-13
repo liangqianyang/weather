@@ -1,22 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bb
- * Date: 2019/8/13
- * Time: 9:26
+
+/*
+ * This file is part of the amap/weather.
+ *
+ * (c) overtrue <i@overtrue.me>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Amap\Weather;
 
-
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
-
     protected $defer = true;
 
     public function register()
     {
-        $this->app->singleton(Weather::class, function(){
+        $this->app->singleton(Weather::class, function () {
             return new Weather(config('services.weather.key'));
         });
 
