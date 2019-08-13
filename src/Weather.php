@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the overtrue/weather.
+ *
+ * (c) overtrue <i@overtrue.me>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Amap\Weather;
 
 use GuzzleHttp\Client;
@@ -9,6 +18,7 @@ use Amap\Weather\Exceptions\InvalidArgumentException;
 class Weather
 {
     protected $key;
+
     protected $guzzleOptions = [];
 
     public function __construct($key)
@@ -27,11 +37,14 @@ class Weather
     }
 
     /**
-     * 获取城市的天气信息
+     * 获取城市的天气信息.
+     *
      * @param $city
      * @param string $type
      * @param string $format
+     *
      * @return mixed|string
+     *
      * @throws HttpException
      * @throws InvalidArgumentException
      */
@@ -70,7 +83,7 @@ class Weather
 
             // 4. 返回值根据 $format 返回不同的格式，
             // 当 $format 为 json 时，返回数组格式，否则为 xml。
-            return $format === 'json' ? \json_decode($response, true) : $response;
+            return 'json' === $format ? \json_decode($response, true) : $response;
         } catch (\Exception $e) {
             // 5. 当调用出现异常时捕获并抛出，消息为捕获到的异常消息，
             // 并将调用异常作为 $previousException 传入。
@@ -79,9 +92,11 @@ class Weather
     }
 
     /**
-     * 获取实时天气
+     * 获取实时天气.
+     *
      * @param $city
      * @param string $format
+     *
      * @return mixed|string
      */
     public function getLiveWeather($city, $format = 'json')
@@ -90,9 +105,11 @@ class Weather
     }
 
     /**
-     * 获取天气预报
+     * 获取天气预报.
+     *
      * @param $city
      * @param string $format
+     *
      * @return mixed|string
      */
     public function getForecastsWeather($city, $format = 'json')
